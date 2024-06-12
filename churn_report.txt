@@ -1,0 +1,59 @@
+Data Preprocessing
+The initial dataset contained some missing values and columns with incorrect data types. The following preprocessing steps were performed:
+
+Dropping Unnecessary Columns: The customerID column was dropped as it is not needed for prediction.
+Handling Missing Values: The TotalCharges column had missing values, which were filled with the median value of the column.
+Converting Target Variable: The Churn column was converted to binary (1 for Yes, 0 for No).
+Feature Engineering
+Additional preprocessing steps included:
+
+Separating Features and Target Variable: The features (X) were separated from the target variable (y).
+Defining Categorical and Numerical Columns: Columns were categorized into numerical and categorical types.
+Creating Preprocessing Pipelines:
+Numerical Transformer: Included steps for imputing missing values with the median and scaling the features.
+Categorical Transformer: Included steps for imputing missing values with a constant value and one-hot encoding.
+Model Building and Evaluation
+Three models were built and evaluated:
+
+Logistic Regression
+Random Forest Classifier
+XGBoost Classifier
+Each model was evaluated using 10-fold cross-validation with ROC-AUC as the scoring metric. The mean ROC-AUC scores for each model were:
+
+Logistic Regression: Mean ROC-AUC = 0.8412 ± 0.0098
+Random Forest: Mean ROC-AUC = 0.8457 ± 0.0113
+XGBoost: Mean ROC-AUC = 0.8523 ± 0.0087
+The best model was identified as XGBoost based on the highest mean ROC-AUC score.
+
+Best Model Training and Evaluation
+The best model, XGBoost, was trained on the entire training set and evaluated on the test set. The evaluation metrics were:
+
+ROC-AUC: 0.8554
+Accuracy: 0.8043
+The classification report for the best model on the test set is as follows:
+
+
+              precision    recall  f1-score   support
+
+           0       0.85      0.87      0.86      1033
+           1       0.65      0.61      0.63       374
+
+    accuracy                           0.80      1407
+   macro avg       0.75      0.74      0.74      1407
+weighted avg       0.80      0.80      0.80      1407
+Feature Importance
+For the XGBoost model, feature importances were analyzed to understand the key factors contributing to customer churn. The top features were:
+
+tenure
+MonthlyCharges
+TotalCharges
+Contract_Two year
+InternetService_Fiber optic
+Conclusion
+This project successfully built a machine learning model to predict customer churn with a high ROC-AUC score. The XGBoost model was identified as the best model and provided valuable insights into the factors driving customer churn. These insights can help the company develop targeted strategies to reduce churn and improve customer retention.
+
+
+
+
+
+
