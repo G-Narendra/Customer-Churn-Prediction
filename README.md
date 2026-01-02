@@ -1,101 +1,137 @@
-# **📉 Customer Churn Prediction using Machine Learning**
 
-*A machine learning model to predict customer churn based on historical data.*
+# 📉 Customer Churn Prediction
+### Proactive Retention Intelligence using Gradient Boosting
 
-## 🌟 **Overview**
-This project implements a **Customer Churn Prediction model** using **Supervised Machine Learning** techniques. The goal is to identify customers who are likely to churn, helping businesses take proactive retention measures.
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python">
+<img src="https://img.shields.io/badge/Scikit--Learn-Classification-F7931E?style=for-the-badge&logo=scikitlearn">
+<img src="https://img.shields.io/badge/Model-XGBoost-2EAD33?style=for-the-badge">
+<img src="https://img.shields.io/badge/ROC--AUC-0.8554-brightgreen?style=for-the-badge">
+<img src="https://img.shields.io/badge/Platform-Jupyter-orange?style=for-the-badge&logo=jupyter">
+</p>
 
-## 📊 **Dataset Overview**
-The dataset used is a **customer churn dataset** from a telecom company. It contains **7,043 customer records** with the following key features:
-- **Demographics**: Gender, Senior Citizen, Partner, Dependents
-- **Account Info**: Tenure, Contract Type, Payment Method, Monthly & Total Charges
-- **Services Availed**: Internet Service, Online Security, Tech Support, Streaming Services
-- **Target Variable**: **Churn (Yes/No)**
+---
 
-## 🎯 **Project Workflow**
-✅ **Data Preprocessing** – Handling missing values, encoding categorical variables, feature scaling.  
-✅ **Feature Engineering** – Extracting meaningful insights to improve model predictions.  
-✅ **Model Training & Evaluation** – Comparing multiple machine learning models.  
-✅ **Model Interpretation** – Analyzing feature importance to understand churn patterns.  
+## 🌟 Overview
 
-## 🛠️ **Tech Stack**
-🔹 **Programming Language:** Python  
-🔹 **Libraries:** Pandas, NumPy, Scikit-learn, XGBoost, Matplotlib, Seaborn  
-🔹 **Model Type:** Classification (Logistic Regression, Random Forest, XGBoost)  
-🔹 **Development Environment:** Jupyter Notebook / Python Script  
+Customer churn is one of the most significant challenges for service-based businesses. This project develops a high-performance **Supervised Machine Learning** pipeline to identify at-risk customers in the telecom sector. By analyzing behavioral patterns and account metrics, the model provides actionable insights that allow for targeted retention strategies.
 
-## 📂 **Project Structure**
-```
+
+
+---
+
+## 📊 Dataset Overview
+
+The study utilizes a telecom dataset containing **7,043 customer records**, capturing the lifecycle of a user through demographic and service-specific features.
+
+* **Demographics:** Gender, Senior Citizen status, and family dynamics.
+* **Account Metrics:** Tenure, Contract Type (Monthly vs. Annual), and Billing Methods.
+* **Service Usage:** Fiber optic availability, Online Security, and Tech Support.
+* **Target:** `Churn` (Binary: Yes/No).
+
+---
+
+## 🎯 Project Workflow
+
+1.  **Data Preprocessing:** Handling null values, one-hot encoding for categorical variables, and feature scaling.
+2.  **Exploratory Data Analysis (EDA):** Identifying correlations between tenure and churn rates.
+3.  **Model Benchmarking:** Implementing a competitive bake-off between Logistic Regression, Random Forest, and XGBoost.
+4.  **Optimization:** Using **10-fold cross-validation** to ensure model stability across different data folds.
+5.  **Feature Importance:** Extracting the specific drivers of churn to inform business logic.
+
+
+
+---
+
+## 🧠 Tech Stack
+
+| Category | Tools |
+| :--- | :--- |
+| **Language** | Python 3.9+ |
+| **ML Framework** | Scikit-learn, XGBoost |
+| **Analysis** | Pandas, NumPy |
+| **Visualization** | Matplotlib, Seaborn |
+| **Environment** | Jupyter Notebook |
+
+---
+
+## 📁 Project Structure
+
+```bash
 Customer-Churn-Prediction/
-├── churn.py                  # Python script with model implementation
-├── customer_churn.csv         # Dataset used for training/testing
-├── churn_intro.txt            # Dataset overview
-├── churn_report.txt           # Detailed project report
-├── requirements.txt           # Dependencies for the project
-├── README.md                  # Project documentation
-└── data/                      # Additional data (if applicable)
+├── src/
+│   └── churn.py              # Implementation of ML classification pipeline
+├── data/
+│   └── customer_churn.csv    # Raw dataset (Telco Churn)
+├── reports/
+│   └── churn_report.txt      # Comprehensive analysis results
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
+
 ```
 
-## 🚀 **Installation & Setup**
-1️⃣ **Clone the Repository**  
-```sh
-git clone https://github.com/G-Narendra/Customer-Churn-Prediction.git
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone [https://github.com/G-Narendra/Customer-Churn-Prediction.git](https://github.com/G-Narendra/Customer-Churn-Prediction.git)
 cd Customer-Churn-Prediction
+
 ```
-2️⃣ **Install Dependencies**  
-```sh
+
+### 2️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+
 ```
-3️⃣ **Run the Model**  
-```sh
+
+### 3️⃣ Execute the Model
+
+```bash
 python churn.py
+
 ```
 
-## 📉 **Model Performance & Evaluation**
-Three models were evaluated using **10-fold cross-validation (ROC-AUC metric):**
-| Model                 | Mean ROC-AUC |
-|----------------------|-------------|
-| Logistic Regression | 0.8412 ± 0.0098 |
-| Random Forest       | 0.8457 ± 0.0113 |
-| **XGBoost (Best)**  | **0.8523 ± 0.0087** |
+---
 
-### **Final Model Evaluation (XGBoost)**
-| Metric      | Score  |
-|------------|--------|
-| ROC-AUC    | 0.8554 |
-| Accuracy   | 80.43% |
+## 📉 Model Performance & Evaluation
 
-### **Classification Report (XGBoost)**
-```
-              precision    recall  f1-score   support
+The following results were achieved through 10-fold cross-validation, with **XGBoost** emerging as the champion model.
 
-           0       0.85      0.87      0.86      1033
-           1       0.65      0.61      0.63       374
+| Model | Mean ROC-AUC | Stability (Std Dev) |
+| --- | --- | --- |
+| **XGBoost** | **0.8523** | **± 0.0087** |
+| **Random Forest** | 0.8457 | ± 0.0113 |
+| **Logistic Regression** | 0.8412 | ± 0.0098 |
 
-    accuracy                           0.80      1407
-   macro avg       0.75      0.74      0.74      1407
-weighted avg       0.80      0.80      0.80      1407
-```
+### **Champion Model Metrics (XGBoost)**
 
-## 🔍 **Key Features Influencing Churn**
-Feature importance analysis using XGBoost revealed that the **top predictors of churn** are:
-- **Tenure** (longer tenure customers are less likely to churn)
-- **Monthly Charges** (higher charges increase churn probability)
-- **Total Charges**
-- **Contract Type (Two-Year Contracts)**
-- **Internet Service (Fiber Optic)**
+* **Final ROC-AUC:** 0.8554
+* **Accuracy:** 80.43%
 
-## 🤝 **Contributions**
-💡 Open to improvements! Feel free to:
-1. Fork the repo  
-2. Create a new branch (`feature-branch`)  
-3. Make changes & submit a PR  
+---
 
+## 🔍 Key Churn Drivers
 
-## 📩 **Connect with Me**
-📧 **Email:** [narendragandikota2540@gmail.com](mailto:narendragandikota2540@gmail.com)  
-🌐 **Portfolio:** [G-Narendra Portfolio](https://g-narendra-portfolio.vercel.app/)  
-💼 **LinkedIn:** [G-Narendra](https://linkedin.com/in/g-narendra/)  
-👨‍💻 **GitHub:** [G-Narendra](https://github.com/G-Narendra)  
+The analysis identifies high-risk profiles based on the following feature impacts:
 
-⭐ **If you find this project useful, drop a star!** 🚀
+* **Tenure:** New customers show a significantly higher risk of churn compared to long-term subscribers.
+* **Contract Type:** Month-to-month contracts are the primary source of churn.
+* **Monthly Charges:** High billing amounts without bundled security/support services correlate with attrition.
+* **Service Type:** Fiber optic users exhibit higher churn, potentially indicating service quality issues.
+
+---
+
+## 👨‍💻 Author
+
+**Narendra (G‑Narendra)** AI | ML | Python | Full Stack | GenAI Enthusiast
+
+📧 [Email Me](mailto:narendragandikota2540@gmail.com) | 💼 [LinkedIn](https://linkedin.com/in/g-narendra/) | 👨‍💻 [GitHub](https://github.com/G-Narendra)
+
+---
+
+<p align="center">⭐ If you find this project useful, feel free to give it a star! 🚀</p>
+
