@@ -1,155 +1,91 @@
-
 # 📉 Customer Churn Prediction
-### Proactive Retention Intelligence using Gradient Boosting
 
-<p align="center">
-<img src="https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python">
-<img src="https://img.shields.io/badge/Scikit--Learn-Classification-F7931E?style=for-the-badge&logo=scikitlearn">
-<img src="https://img.shields.io/badge/Model-XGBoost-2EAD33?style=for-the-badge">
-<img src="https://img.shields.io/badge/ROC--AUC-0.8554-brightgreen?style=for-the-badge">
-<img src="https://img.shields.io/badge/Platform-Jupyter-orange?style=for-the-badge&logo=jupyter">
-</p>
+**Predicting which customers will churn (leave) a service using gradient boosting.**
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-ML-F7931E.svg)](https://scikit-learn.org/)
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
 
-## 🌟 Overview
+## 🎯 Problem Statement
 
-Customer churn is one of the most significant challenges for service-based businesses. This project develops a high-performance **Supervised Machine Learning** pipeline to identify at-risk customers in the telecom sector. By analyzing behavioral patterns and account metrics, the model provides actionable insights that allow for targeted retention strategies.
-
-
+Predicting which customers will churn (leave) a service using gradient boosting.
 
 ---
 
-## 📊 Dataset Overview
+## 📊 What I Built
 
-The study utilizes a telecom dataset containing **7,043 customer records**, capturing the lifecycle of a user through demographic and service-specific features.
+ML classification pipeline for customer churn prediction using gradient boosting.
 
-* **Demographics:** Gender, Senior Citizen status, and family dynamics.
-* **Account Metrics:** Tenure, Contract Type (Monthly vs. Annual), and Billing Methods.
-* **Service Usage:** Fiber optic availability, Online Security, and Tech Support.
-* **Target:** `Churn` (Binary: Yes/No).
+### Key Results
 
----
-
-## 🎯 Project Workflow
-
-1.  **Data Preprocessing:** Handling null values, one-hot encoding for categorical variables, and feature scaling.
-2.  **Exploratory Data Analysis (EDA):** Identifying correlations between tenure and churn rates.
-3.  **Model Benchmarking:** Implementing a competitive bake-off between Logistic Regression, Random Forest, and XGBoost.
-4.  **Optimization:** Using **10-fold cross-validation** to ensure model stability across different data folds.
-5.  **Feature Importance:** Extracting the specific drivers of churn to inform business logic.
-
-
+| Metric | Value |
+|---|---|
+| **Model** | XGBoost (if present) or Logistic Regression |
+| **Train Size** | 70% |
+| **Test Size** | 30% |
+| **Evaluation** | accuracy, f1, confusion_matrix |
 
 ---
 
-## 🧠 Tech Stack
+## 🛠️ Tech Stack
 
-| Category | Tools |
-| :--- | :--- |
-| **Language** | Python 3.9+ |
-| **ML Framework** | Scikit-learn, XGBoost |
-| **Analysis** | Pandas, NumPy |
-| **Visualization** | Matplotlib, Seaborn |
-| **Environment** | Jupyter Notebook |
+| Component | Technology |
+|---|---|
+| **Language** | Python 3.8+ |
+| **Data Processing** | Pandas |
+| **ML Framework** | Scikit-Learn |
+| **Model** | XGBoost (if present) or Logistic Regression |
 
 ---
 
 ## 📁 Project Structure
 
-```bash
+```
 Customer-Churn-Prediction/
-├── src/
-│   └── churn.py              # Implementation of ML classification pipeline
-├── data/
-│   └── customer_churn.csv    # Raw dataset (Telco Churn)
-├── reports/
-│   └── churn_report.txt      # Comprehensive analysis results
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project documentation
-
+├── *.ipynb                          # Main notebook with full pipeline
+├── ml_evaluation_utils.py           # Evaluation utilities (CV, confidence intervals)
+├── README.md
+└── LICENSE
 ```
 
+---
 
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the Repository
+## 🔧 How to Run
 
 ```bash
-git clone [https://github.com/G-Narendra/Customer-Churn-Prediction.git](https://github.com/G-Narendra/Customer-Churn-Prediction.git)
-cd Customer-Churn-Prediction
+# Install dependencies
+pip install pandas scikit-learn jupyter
 
-```
-
-### 2️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-
-```
-
-### 3️⃣ Execute the Model
-
-```bash
-python churn.py
-
+# Run the notebook
+jupyter notebook *.ipynb
 ```
 
 ---
 
-## 📉 Model Performance & Evaluation
+## 🧪 Engineering Decisions
 
-The following results were achieved through 10-fold cross-validation, with **XGBoost** emerging as the champion model.
-
-| Model | Mean ROC-AUC | Stability (Std Dev) |
-| --- | --- | --- |
-| **XGBoost** | **0.8523** | **± 0.0087** |
-| **Random Forest** | 0.8457 | ± 0.0113 |
-| **Logistic Regression** | 0.8412 | ± 0.0098 |
-
-### **Champion Model Metrics (XGBoost)**
-
-* **Final ROC-AUC:** 0.8554
-* **Accuracy:** 80.43%
+| Decision | Rationale |
+|---|---|
+| **XGBoost (if present) or Logistic Regression** | Chosen as baseline model for this problem type |
+| **70/30 Split** | Standard split ratio for small-medium datasets |
+| **Random State 2529** | Fixed random state ensures reproducibility |
 
 ---
 
-## 🔍 Key Churn Drivers
+## ⚠️ Limitations
 
-The analysis identifies high-risk profiles based on the following feature impacts:
-
-* **Tenure:** New customers show a significantly higher risk of churn compared to long-term subscribers.
-* **Contract Type:** Month-to-month contracts are the primary source of churn.
-* **Monthly Charges:** High billing amounts without bundled security/support services correlate with attrition.
-* **Service Type:** Fiber optic users exhibit higher churn, potentially indicating service quality issues.
+- **Class imbalance**
+- **No cross-validation**
+- **No confidence intervals**
 
 ---
 
-## Engineering Decisions & Challenges Solved
+## ⚠️ Disclaimer
 
-| Challenge | Decision | Why |
-|---|---|---|
-| Churn is rare (imbalanced dataset) | SMOTE oversampling + class-weighted XGBoost | Naive training predicts "no churn" for everyone — SMOTE ensures the model learns churn patterns |
-| Feature interactions are non-linear | XGBoost over Logistic Regression — captures feature interactions automatically | Linear models miss interactions like "high monthly charges + short tenure = high churn risk" |
-| Business needs actionable interventions, not just predictions | SHAP values ranking features by churn impact | Knowing *why* a customer will churn enables targeted retention strategies, not just flagging |
-| Model threshold affects precision/recall trade-off | Precision-Recall curve analysis with business-aligned threshold selection | Default 0.5 threshold is arbitrary — the optimal threshold depends on the cost of false positives vs missed churn |
-
-## ML Engineering Decisions
-
-| Challenge | Decision | Why |
-|---|---|---|
-| Churn is rare (imbalanced dataset) | SMOTE + class-weighted XGBoost | Naive training predicts "no churn" for everyone — SMOTE ensures model learns churn patterns |
-| Model needs uncertainty for retention budget | Bootstrap confidence intervals | Marketing needs to know: "We're 95% confident this customer will churn" — not just a probability |
-| Feature interactions are non-linear | XGBoost over Logistic Regression | Linear models miss interactions like "high charges + short tenure = churn" |
-| Business needs actionable insights | SHAP values + feature importance | Knowing *why* a customer churns enables targeted retention — not just flagging |
-
-## 👨‍💻 Author
-
-**Narendra (G‑Narendra)** AI | ML | Python | Full Stack | GenAI Enthusiast
-
-📧 [Email Me](mailto:narendragandikota2540@gmail.com) | 💼 [LinkedIn](https://linkedin.com/in/g-narendra/) | 👨‍💻 [GitHub](https://github.com/G-Narendra)
+This is an educational project for learning ML concepts. It is not intended for production use.
 
 ---
 
-<p align="center">⭐ If you find this project useful, feel free to give it a star! 🚀</p>
-
+*Built as part of MSc Data Science coursework — demonstrating fundamental ML pipeline.*
