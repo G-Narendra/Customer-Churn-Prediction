@@ -125,6 +125,15 @@ The analysis identifies high-risk profiles based on the following feature impact
 
 ---
 
+## Engineering Decisions & Challenges Solved
+
+| Challenge | Decision | Why |
+|---|---|---|
+| Churn is rare (imbalanced dataset) | SMOTE oversampling + class-weighted XGBoost | Naive training predicts "no churn" for everyone — SMOTE ensures the model learns churn patterns |
+| Feature interactions are non-linear | XGBoost over Logistic Regression — captures feature interactions automatically | Linear models miss interactions like "high monthly charges + short tenure = high churn risk" |
+| Business needs actionable interventions, not just predictions | SHAP values ranking features by churn impact | Knowing *why* a customer will churn enables targeted retention strategies, not just flagging |
+| Model threshold affects precision/recall trade-off | Precision-Recall curve analysis with business-aligned threshold selection | Default 0.5 threshold is arbitrary — the optimal threshold depends on the cost of false positives vs missed churn |
+
 ## 👨‍💻 Author
 
 **Narendra (G‑Narendra)** AI | ML | Python | Full Stack | GenAI Enthusiast
