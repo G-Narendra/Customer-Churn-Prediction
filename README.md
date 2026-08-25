@@ -134,6 +134,15 @@ The analysis identifies high-risk profiles based on the following feature impact
 | Business needs actionable interventions, not just predictions | SHAP values ranking features by churn impact | Knowing *why* a customer will churn enables targeted retention strategies, not just flagging |
 | Model threshold affects precision/recall trade-off | Precision-Recall curve analysis with business-aligned threshold selection | Default 0.5 threshold is arbitrary — the optimal threshold depends on the cost of false positives vs missed churn |
 
+## ML Engineering Decisions
+
+| Challenge | Decision | Why |
+|---|---|---|
+| Churn is rare (imbalanced dataset) | SMOTE + class-weighted XGBoost | Naive training predicts "no churn" for everyone — SMOTE ensures model learns churn patterns |
+| Model needs uncertainty for retention budget | Bootstrap confidence intervals | Marketing needs to know: "We're 95% confident this customer will churn" — not just a probability |
+| Feature interactions are non-linear | XGBoost over Logistic Regression | Linear models miss interactions like "high charges + short tenure = churn" |
+| Business needs actionable insights | SHAP values + feature importance | Knowing *why* a customer churns enables targeted retention — not just flagging |
+
 ## 👨‍💻 Author
 
 **Narendra (G‑Narendra)** AI | ML | Python | Full Stack | GenAI Enthusiast
